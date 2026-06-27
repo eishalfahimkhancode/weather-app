@@ -5,12 +5,17 @@ const ICONS = {
   "09": "🌧️", "10": "🌦️", "11": "⛈️", "13": "❄️", "50": "🌫️",
 };
 
-export default function WeatherCard({ weather }) {
-  const { name, sys, main, wind, weather: cond, visibility } = weather;
+function formatTime(unix, timezone) {
+  const date = new Date((unix + timezone) * 1000);
+  return date.toUTCString().slice(-12, -7);
+}
+
+export default function WeatherCard({ weather, darkMode }) {
+  const { name, sys, main, wind, weather: cond, visibility, timezone } = weather;
   const icon = ICONS[cond[0].icon?.slice(0, 2)] ?? "🌡️";
 
   return (
-    <div className="weather-card">
+    <div className={`weather-card ${darkMode ? "dark-card" : ""}`}>
       <h2>{name}, {sys.country}</h2>
 
       <span className="w-icon" role="img" aria-label={cond[0].description}>
@@ -20,6 +25,24 @@ export default function WeatherCard({ weather }) {
       <h1>{Math.round(main.temp)}°C</h1>
       <p className="description">{cond[0].description}</p>
       <p className="feels">Feels like: {Math.round(main.feels_like)}°C</p>
+
+      <div className="sun-row">
+        <div className="sun-item">
+          <span>🌅</span>
+          <div>
+            <p className="sun-label">Sunrise</p>
+            <p className="sun-val">{formatTime(sys.sunrise, timezone)}</p>
+          </div>
+        </div>
+        <div className="sun-divider" />
+        <div className="sun-item">
+          <span>🌇</span>
+          <div>
+            <p className="sun-label">Sunset</p>
+            <p className="sun-val">{formatTime(sys.sunset, timezone)}</p>
+          </div>
+        </div>
+      </div>
 
       <div className="details">
         <div className="detail-tile">

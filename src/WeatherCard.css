@@ -4,17 +4,22 @@
   -webkit-backdrop-filter: blur(18px);
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
-  padding: 30px 24px;
+  padding: 28px 24px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
   animation: fadeUp 0.5s ease;
   color: white;
   text-align: center;
 }
 
+.weather-card.dark-card {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
 .weather-card h2 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .w-icon {
@@ -25,7 +30,7 @@
 }
 
 .weather-card h1 {
-  font-size: 70px;
+  font-size: 68px;
   font-weight: 600;
   line-height: 1;
   margin: 8px 0;
@@ -34,14 +39,57 @@
 .description {
   text-transform: capitalize;
   font-size: 20px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .feels {
-  font-size: 16px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
+
+
+.sun-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+
+.sun-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.sun-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 10px;
+}
+
+.sun-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+.sun-val {
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+}
+
 
 .details {
   display: grid;
@@ -61,7 +109,7 @@
 }
 
 .tile-icon {
-  font-size: 26px;
+  font-size: 24px;
   width: 38px;
   height: 38px;
   display: flex;
@@ -95,4 +143,6 @@
 @media (max-width: 500px) {
   .weather-card h1 { font-size: 55px; }
   .details { grid-template-columns: 1fr; }
+  .sun-row { flex-direction: column; gap: 12px; }
+  .sun-divider { width: 100%; height: 1px; margin: 0; }
 }
